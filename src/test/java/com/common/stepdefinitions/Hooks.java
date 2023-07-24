@@ -2,7 +2,7 @@ package com.common.stepdefinitions;
 
 
 import com.common.core.RestAssuredExtension;
-import com.common.core.WebDriverSingleton;
+import com.common.core.webDriverExtension;
 import com.common.pages.LoginPage;
 import com.common.pages.SecurePage;
 import io.cucumber.java.Before;
@@ -20,16 +20,26 @@ public class Hooks {
     static RestAssuredExtension restAssured;
     static Response response;
 
+    /**
+     * Sets up the web driver and initialize the page objects.
+     */
     @Before("@UI")
     public static void setUpUi() {
-        driver = new WebDriverSingleton().getInstance();
+        driver = new webDriverExtension().getInstance();
         loginPage = new LoginPage(driver);
         securePage = new SecurePage(driver);
     }
 
+    /**
+     * Tears down the selenium after the test is finished.
+     * Attach a screenshot in case a test fails.
+     * Also deletes the cookies.
+     *
+     * @param result is the result of the last UI test run
+     */
     @After("@UI")
     public static void tearDownUI(Scenario result) {
-        if(result.isFailed()){
+        if (result.isFailed()) {
             final byte[] SCREENSHOT = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             result.attach(SCREENSHOT, "image/png", "Screenshot");
         }
@@ -37,6 +47,10 @@ public class Hooks {
         driver.close();
         driver.quit();
     }
+
+    /**
+     * Sets up the Rest Assured for the api tests, by initializing the Rest Assured.
+     */
     @Before("@API")
     public static void setUpApi() {
         restAssured = new RestAssuredExtension();

@@ -1,17 +1,14 @@
-/**
- * A utility class that extends RestAssured functionality to simplify API testing.
- * It provides methods to set base URI and path, control follow redirects behavior,
- * and send GET requests with custom configurations.
- */
 package com.common.core;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.RedirectConfig;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
 
+/**
+ * A utility class that extends RestAssured functionality for API testing.
+ */
 public class RestAssuredExtension {
     private RequestSpecification requestSpec;
 

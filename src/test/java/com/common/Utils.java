@@ -1,7 +1,8 @@
 package com.common;
 
-import java.net.URI;
-
+/**
+ * This class is a collection of the static final values
+ */
 public class Utils {
     public static final String DRIVER_DIR = "./drivers";
     public static final String BASE_URI = "https://the-internet.herokuapp.com";
