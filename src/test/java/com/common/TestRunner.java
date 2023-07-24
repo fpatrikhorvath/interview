@@ -10,6 +10,6 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/scenarios",
         plugin = {"pretty", "html:target/cucumber-report.html"},
-        glue = "common/stepdefinitions"
+        glue = "com/common/stepdefinitions"
 )
 public class TestRunner {}

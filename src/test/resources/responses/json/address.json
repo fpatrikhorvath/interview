@@ -1,0 +1,69 @@
+{
+  "type": "array",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": ["Nicholas Runolfsdottir V"]
+    },
+    "username": {
+      "type": "string",
+      "enum": ["Maxime_Nienow"]
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "enum": ["Sherwood@rosamond.me"]
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string",
+          "enum": ["Ellsworth Summit"]
+        },
+        "suite": {
+          "type": "string",
+          "enum": ["Suite 729"]
+        },
+        "city": {
+          "type": "string",
+          "enum": ["Aliyaview"]
+        },
+        "zipcode": {
+          "type": "string",
+          "enum": ["45169"]
+        },
+        "geo": {
+          "type": "object",
+          "properties": {
+            "lat": {
+              "type": "string",
+              "enum": ["-14.3990"]
+            },
+            "lng": {
+              "type": "string",
+              "enum": ["-120.7677"]
+            }
+          },
+          "required": [
+            "lat",
+            "lng"
+          ]
+        }
+      },
+      "required": [
+        "street",
+        "suite",
+        "city",
+        "zipcode",
+        "geo"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "username",
+    "email",
+    "address"
+  ]
+}
