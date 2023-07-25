@@ -1,5 +1,7 @@
 package com.common.stepdefinitions;
 
+import io.cucumber.core.internal.com.fasterxml.jackson.databind.JsonNode;
+import io.cucumber.core.internal.com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,8 +10,11 @@ import io.cucumber.java.en.When;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 import com.common.Utils;
+import io.cucumber.messages.types.DataTable;
+import io.restassured.internal.path.json.JSONAssertion;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 import static org.junit.Assert.*;
@@ -73,18 +78,14 @@ public class ApiSteps {
     }
 
     /**
-     * Validates that the response body matches the provided JSON schema.
+     * Asserts that the response body contains the list of the input values.
      *
-     * @param path The path to the JSON schema file to be used for validation.
-     * @throws IOException If there is an issue reading the JSON schema file.
+     * @param expectedValues a String list of the expected values.
      */
-    @And("I see the {string} schema in the response body")
-    public void iSeeTheInTheResponseBody(String path) throws IOException {
-        // Reads the JSON schema from the file specified by 'path'
-        String expectedJsonSchema = new String(Files.readAllBytes(Paths.get(Utils.RESOURCE_DIR + path)));
-
-        // Validates the response body against the JSON schema using REST Assured's JsonSchemaValidator
-        JsonSchemaValidator validator = JsonSchemaValidator.matchesJsonSchema(expectedJsonSchema);
-        response.then().assertThat().body(validator);
+    @And("I see the following values in the response body")
+    public void iSeeTheFollowingValuesInTheResponseBody(List<String> expectedValues) {
+        String responseBody = response.getBody().asString();
+        for (String expectedValue : expectedValues)
+            assertTrue(responseBody.contains(expectedValue));
     }
 }

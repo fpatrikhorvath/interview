@@ -7,6 +7,8 @@ You can run it with the followin command
 Implemented technologies:
 ```
 Java 8
+Maven
+Gherkin/Cucumber
 Rest Assured
 Selenium Chrome and Webdriver
 Junit4
