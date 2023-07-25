@@ -1,5 +1,6 @@
 @API @smoke
 Feature:Contains the solution for the 3rd problem
+
   Background:Sets the BaseUri for the Rest Assured
     Given I set the "https://jsonplaceholder.typicode.com" as URI and the "" as path
 
@@ -8,6 +9,7 @@ Feature:Contains the solution for the 3rd problem
     When I send a GET request to the "/users" endpoint
     Then I see "Nicholas Runolfsdottir V" in the response body
     When I send a GET request to the "/users?name=Nicholas Runolfsdottir V" endpoint
+    Then I see the "/schemas/json/address.json" schema in the response body
     And I see the following values in the response body
       | "street": "Ellsworth Summit" |
       | "suite": "Suite 729"         |

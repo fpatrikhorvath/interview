@@ -88,4 +88,17 @@ public class ApiSteps {
         for (String expectedValue : expectedValues)
             assertTrue(responseBody.contains(expectedValue));
     }
+
+    /**
+     * Validates that the response body's address matches with its pattern.
+     *
+     * @param path file path to the response schema.
+     * @throws IOException when the file read/write is interrupted.
+     */
+    @And("I see the {string} schema in the response body")
+    public void iSeeTheInTheResponseBody(String path) throws IOException {
+        String expectedJsonSchema = new String(Files.readAllBytes(Paths.get(Utils.RESOURCE_DIR + path)));
+        JsonSchemaValidator validator = JsonSchemaValidator.matchesJsonSchema(expectedJsonSchema);
+        response.then().assertThat().body(validator);
+    }
 }
