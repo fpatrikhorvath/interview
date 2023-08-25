@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class webDriverExtension {
+public class WebDriverExtension {
 
     private static WebDriver driver;
 
     /**
      * The ChromeDriver is initialized and set up with options in the constructor.
      */
-    public webDriverExtension() {
+    public WebDriverExtension() {
         String path = Utils.DRIVER_DIR + "/chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", path);
         ChromeOptions options = getChromeOptions();

@@ -2,7 +2,7 @@ package com.common.stepdefinitions;
 
 
 import com.common.core.RestAssuredExtension;
-import com.common.core.webDriverExtension;
+import com.common.core.WebDriverExtension;
 import com.common.pages.LoginPage;
 import com.common.pages.SecurePage;
 import io.cucumber.java.Before;
@@ -25,7 +25,7 @@ public class Hooks {
      */
     @Before("@UI")
     public static void setUpUi() {
-        driver = new webDriverExtension().getInstance();
+        driver = new WebDriverExtension().getInstance();
         loginPage = new LoginPage(driver);
         securePage = new SecurePage(driver);
     }
